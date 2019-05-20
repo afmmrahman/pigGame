@@ -2,7 +2,7 @@ var scores, roundScores, activePlayer;
 
 scores = [0,0];  // score array for two player
 roundScores = 0; //  round score of the game
-activePlayer = 1; // the player who is active 
+activePlayer = 0; // the player who is active 
 
 
 
@@ -21,4 +21,12 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     var diceDOM = document.querySelector('.dice'); // putting selector in a variable, just for easy use
     diceDOM.style.display = 'block'; // bring back the dice image 
     diceDOM.src = 'dice-' + dice + '.png'; // change the dice image according to the random number
+    
+    if (dice !== 1){                  // adding the current player score in roundscores
+        roundScores += dice;
+        document.querySelector('#current-' + activePlayer).textContent = roundScores;        
+    } else{                           // go to the next player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScores = 0;
+    }
 });
