@@ -1,19 +1,6 @@
 var scores, roundScores, activePlayer; 
 
-scores = [0,0];  // score array for two player
-roundScores = 0; //  round score of the game
-activePlayer = 0; // the player who is active 
-
-
-
-// document.querySelector('#current-' + activePlayer).textContent = dice; // roll the dice for active player
-
-document.querySelector('.dice').style.display = 'none'; // initially taking away dice image display from site
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+init(); // initialize function
 
 // Roll-dice button
 
@@ -65,4 +52,34 @@ function nextPlayer(){
         document.querySelector('.player-1-panel').classList.toggle('active');
         
         document.querySelector('.dice').style.display = 'none';
+}
+
+// new Button
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+// Initialize fumction
+
+function init(){
+    scores = [0,0];  // score array for two player
+    roundScores = 0; //  round score of the game
+    activePlayer = 0; // the player who is active 
+    
+    document.querySelector('.dice').style.display = 'none'; // initially taking away dice image display from site
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+    
+    
 }
