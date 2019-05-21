@@ -25,8 +25,16 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     if (dice !== 1){                  // adding the current player score in roundscores
         roundScores += dice;
         document.querySelector('#current-' + activePlayer).textContent = roundScores;        
-    } else{                           // go to the next player
+    } else{                           // go to the next player if it hits one
         activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
         roundScores = 0;
+        
+        document.getElementById('current-0').textContent = '0';
+        document.getElementById('current-1').textContent = '0';
+        
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        
+        document.querySelector('.dice').style.display = 'none';
     }
 });
