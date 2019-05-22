@@ -1,4 +1,4 @@
-var scores, roundScores, activePlayer, gamePlaying; 
+var scores, roundScores, activePlayer, gamePlaying, prevDice; 
 
 init(); // initialize function
 
@@ -12,13 +12,19 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         var diceDOM = document.querySelector('.dice'); // putting   selector in a variable, just for easy use
         diceDOM.style.display = 'block'; // bring back the dice image 
         diceDOM.src = 'dice-' + dice + '.png'; // change the dice image according to the random number
-    
-        if (dice !== 1){                  // adding the current player score in roundscores
-        roundScores += dice;
-        document.querySelector('#current-' + activePlayer).textContent = roundScores;        
+        if(dice === 6 && prevDice === 6){  // playet loose entire score if rolls two 6 in a row
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+            nextPlayer();
+            
+        } else if (dice !== 1){                  // adding the current player score in roundscores
+            roundScores += dice;
+            document.querySelector('#current-' + activePlayer).textContent = roundScores;        
         } else{                           
             nextPlayer();
         }
+        
+        prevDice = dice;
     }
 });
 
